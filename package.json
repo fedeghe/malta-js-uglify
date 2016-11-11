@@ -1,0 +1,28 @@
+{
+  "name": "malta-js-uglify",
+  "version": "0.0.5",
+  "description": "Malta plugin to uglify js code",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://fedeghe@github.com/fedeghe/malta-js-uglify.git"
+  },
+  "keywords": [
+    "malta",
+    "malta plugin",
+    "malta uglify js",
+    "malta uglify js plugin"
+  ],
+  "author": "Federico Ghedina <federico.ghedina@gmail.com>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/fedeghe/malta-js-uglify/issues"
+  },
+  "dependencies": {
+    "uglify-js": "^2.7.4",
+    "malta": ">=3.0.0"
+  },
+  "main": "./index.js"
+}
