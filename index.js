@@ -5,6 +5,7 @@ var uglify_js = require("uglify-js"),
 	fs = require('fs');
 
 function malta_js_uglify(o, options) {
+
 	var self = this,
 		start = new Date(),
 		msg;
@@ -14,11 +15,16 @@ function malta_js_uglify(o, options) {
 
 	// o.name = o.name.replace(/\.js$/, '.pack.js');
 
-	o.content = uglify_js.minify(o.content, options).code;
+	try{
+		o.content = uglify_js.minify(o.content+"", options).code;
+	}catch(error){
+		console.log(error)
+	}
 
 	return function (solve, reject){
 		fs.writeFile(o.name, o.content, function(err) {
 			if (err == null) {
+
 				msg = 'plugin ' + path.basename(path.dirname(__filename)).white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
 			} else {
 				console.log('[ERROR] uglify-js says:');
