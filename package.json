@@ -1,6 +1,6 @@
 {
   "name": "malta-js-uglify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Malta plugin to uglify js code",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "uglify-js": "^2.7.4",
-    "malta": ">=3.4.0"
+    "malta": ">=3.8.3"
   },
   "main": "./index.js"
 }
