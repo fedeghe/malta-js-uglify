@@ -1,3 +1,10 @@
+---
+[![npm version](https://badge.fury.io/js/malta-js-uglify.svg)](http://badge.fury.io/js/malta-js-uglify)
+[![Dependencies](https://david-dm.org/fedeghe/malta-js-uglify.svg)](https://david-dm.org/fedeghe/malta-js-uglify)
+[![npm downloads](https://img.shields.io/npm/dt/malta-js-uglify.svg)](https://npmjs.org/package/malta-js-uglify)
+[![npm downloads](https://img.shields.io/npm/dm/malta-js-uglify.svg)](https://npmjs.org/package/malta-js-uglify)  
+---  
+
 This plugin can be used on: **.js** files and even on **.coffee** and **.ts** files after using the right plugin  
 
 Options : all options of the [uglify-js package](https://www.npmjs.com/package/uglify-js)  
