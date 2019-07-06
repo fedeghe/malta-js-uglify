@@ -14,19 +14,23 @@ function malta_js_uglify(o, options) {
 	options = options || {};
 	options.fromString = true;
 
-	try {
-		o.content = uglify_js.minify(o.content+"", options).code;
-	} catch (err) {
-		self.doErr(err, o, pluginName);
-	}
-
 	return function (solve, reject){
-		fs.writeFile(o.name, o.content, function(err) {
-			err && self.doErr(err, o, pluginName);
-			msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
-			solve(o);
-			self.notifyAndUnlock(start, msg);
-		});
+        try {
+            o.content = uglify_js.minify(o.content+"", options).code;
+            fs.writeFile(o.name, o.content, function(err) {
+                err && self.doErr(err, o, pluginName);
+                msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
+                
+                err
+                    ? reject(`Plugin ${pluginName} write error:\n${err}`)
+                    : solve(o);
+                self.notifyAndUnlock(start, msg);
+            });
+        } catch (err) {
+            self.doErr(err, o, pluginName);
+            reject(`Plugin ${pluginName} uglifycation error:\n${err}`)
+            self.notifyAndUnlock(start, msg);
+        }
 	};
 }
 malta_js_uglify.ext = ['js', 'coffee', 'ts'];
