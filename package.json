@@ -1,28 +1,28 @@
 {
-  "name": "malta-js-uglify",
-  "version": "1.0.6",
-  "description": "Malta plugin to uglify js code",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://fedeghe@github.com/fedeghe/malta-js-uglify.git"
-  },
-  "keywords": [
-    "malta",
-    "malta plugin",
-    "malta uglify js",
-    "malta uglify js plugin"
-  ],
-  "author": "Federico Ghedina <federico.ghedina@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/fedeghe/malta-js-uglify/issues"
-  },
-  "dependencies": {
-    "malta": ">=3.8.14",
-    "uglify-js": "^2.8.29"
-  },
-  "main": "./index.js"
+    "name": "malta-js-uglify",
+    "version": "1.0.6",
+    "description": "Malta plugin to uglify js code",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://fedeghe@github.com/fedeghe/malta-js-uglify.git"
+    },
+    "keywords": [
+        "malta",
+        "malta plugin",
+        "malta uglify js",
+        "malta uglify js plugin"
+    ],
+    "author": "Federico Ghedina <fedeghe@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/fedeghe/malta-js-uglify/issues"
+    },
+    "dependencies": {
+        "malta": ">=3.8.14",
+        "uglify-js": "^2.8.29"
+    },
+    "main": "./index.js"
 }
