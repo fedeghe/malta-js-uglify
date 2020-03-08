@@ -1,23 +1,22 @@
-require('malta').checkDeps('uglify-js');
-
-var uglify_js = require("uglify-js"),
+const uglify_js = require("uglify-js"),
 	path = require('path'),
 	fs = require('fs');
 
 function malta_js_uglify(o, options) {
 
-	var self = this,
+	const self = this,
 		start = new Date(),
-		msg,
-		pluginName = path.basename(path.dirname(__filename));
+        pluginName = path.basename(path.dirname(__filename));
+        
+    let msg;
 
 	options = options || {};
 	options.fromString = true;
 
-	return function (solve, reject){
+	return (solve, reject) => {
         try {
             o.content = uglify_js.minify(o.content+"", options).code;
-            fs.writeFile(o.name, o.content, function(err) {
+            fs.writeFile(o.name, o.content, err => {
                 err && self.doErr(err, o, pluginName);
                 msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
                 

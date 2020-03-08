@@ -21,8 +21,7 @@
         "url": "https://github.com/fedeghe/malta-js-uglify/issues"
     },
     "dependencies": {
-        "malta": "^4.0.4",
-        "uglify-js": "^2.8.29"
+        "uglify-js": "3.8.0"
     },
     "main": "./index.js"
 }
