@@ -12,26 +12,19 @@ function malta_js_uglify(o, options) {
 
 	options = options || {};
 	options.fromString = true;
-
 	return (solve, reject) => {
         try {
             const r = uglify_js.minify(o.content+"", options);
-            if (r.error) {
-                msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
-                reject(`Plugin ${pluginName} write error:\n${err}`) 
+                o.content = r.error ? o.content : r.code;
+            fs.writeFile(o.name, o.content, err => {
+                err && self.doErr(err, o, pluginName);
+                msg = 'plugin ' + pluginName.white() + (r.error ? ' failed to write ' : ' wrote ') + o.name + ' (' + self.getSize(o.name) + ')';
+                
+                err
+                    ? reject(`Plugin ${pluginName} write error:\n${err}`)
+                    : solve(o);
                 self.notifyAndUnlock(start, msg);
-            } else {
-                o.content = r.code;
-                fs.writeFile(o.name, o.content, err => {
-                    err && self.doErr(err, o, pluginName);
-                    msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
-                    
-                    err
-                        ? reject(`Plugin ${pluginName} write error:\n${err}`)
-                        : solve(o);
-                    self.notifyAndUnlock(start, msg);
-                });
-            }
+            });
         } catch (err) {
             self.doErr(err, o, pluginName);
             reject(`Plugin ${pluginName} uglifycation error:\n${err}`)
