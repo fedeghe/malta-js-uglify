@@ -15,16 +15,23 @@ function malta_js_uglify(o, options) {
 
 	return (solve, reject) => {
         try {
-            o.content = uglify_js.minify(o.content+"", options).code;
-            fs.writeFile(o.name, o.content, err => {
-                err && self.doErr(err, o, pluginName);
+            const r = uglify_js.minify(o.content+"", options);
+            if (r.error) {
                 msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
-                
-                err
-                    ? reject(`Plugin ${pluginName} write error:\n${err}`)
-                    : solve(o);
+                reject(`Plugin ${pluginName} write error:\n${err}`) 
                 self.notifyAndUnlock(start, msg);
-            });
+            } else {
+                o.content = r.code;
+                fs.writeFile(o.name, o.content, err => {
+                    err && self.doErr(err, o, pluginName);
+                    msg = 'plugin ' + pluginName.white() + ' wrote ' + o.name + ' (' + self.getSize(o.name) + ')';
+                    
+                    err
+                        ? reject(`Plugin ${pluginName} write error:\n${err}`)
+                        : solve(o);
+                    self.notifyAndUnlock(start, msg);
+                });
+            }
         } catch (err) {
             self.doErr(err, o, pluginName);
             reject(`Plugin ${pluginName} uglifycation error:\n${err}`)
