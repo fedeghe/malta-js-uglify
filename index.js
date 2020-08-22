@@ -15,6 +15,7 @@ function malta_js_uglify(o, options) {
 	return (solve, reject) => {
         try {
             o.content = uglify_js.minify(o.content+"", options).code;
+            if ('strict' in options) o.content = `'use strict';\n${o.content}`;
             fs.writeFile(o.name, o.content, err => {
                 err && self.doErr(err, o, pluginName);
                 msg = 'plugin ' + pluginName.white() + (err ? ' failed to write ' : ' wrote ') + o.name + ' (' + self.getSize(o.name) + ')';
